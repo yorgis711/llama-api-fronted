@@ -41,7 +41,7 @@
                 data: JSON.stringify({ message: message }),
                 success: function (data) {
                     // Display API response in chat history
-                    $('#chat-history').append('<p>Llama API: ' + data.response + '</p>');
+                    $('#chat-history').append('<p>Llama: ' + data.response + '</p>');
 
                     // Clear input field
                     $('#message').val('');
@@ -49,7 +49,7 @@
                     // If the response suggests a follow-up question
                     if (data.followup_message) {
                         // Display follow-up question in chat history
-                        $('#chat-history').append('<p>Llama API: ' + data.followup_message + '</p>');
+                        $('#chat-history').append('<p>Llama: ' + data.followup_message + '</p>');
                     }
                 },
                 error: function (error) {
