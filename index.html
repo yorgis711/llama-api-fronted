@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llama API Multi-Question Chat</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <h1>Llama API Multi-Question Chat</h1>
+
+    <h2>API Endpoint:</h2>
+    <p>API URL: <code>ai-api.yorgis.net</code></p>
+
+    <h2>Try It:</h2>
+    <form id="chat-form">
+        <label for="message">Enter your message:</label>
+        <input type="text" id="message" name="message" required>
+        <button type="submit">Send</button>
+    </form>
+
+    <h3>Chat History:</h3>
+    <div id="chat-history"></div>
+
+    <script>
+        // Handle form submission
+        $('#chat-form').submit(function (e) {
+            e.preventDefault();
+            var message = $('#message').val();
+
+            // Display user message in chat history
+            $('#chat-history').append('<p>User: ' + message + '</p>');
+
+            // Make API call
+            $.ajax({
+                url: 'https://ai-api.yorgis.net',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ message: message }),
+                success: function (data) {
+                    // Display API response in chat history
+                    $('#chat-history').append('<p>Llama API: ' + data.response + '</p>');
+
+                    // Clear input field
+                    $('#message').val('');
+
+                    // If the response suggests a follow-up question
+                    if (data.followup_message) {
+                        // Display follow-up question in chat history
+                        $('#chat-history').append('<p>Llama API: ' + data.followup_message + '</p>');
+                    }
+                },
+                error: function (error) {
+                    // Handle error
+                    $('#chat-history').append('<p>Error occurred: ' + error.statusText + '</p>');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
