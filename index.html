@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Llama API </title>
+    <title>Llama API</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <h1>Llama API Chat</h1>
+    <h1>Llama API Multi-Question Chat</h1>
 
     <h2>API Endpoint:</h2>
-    <p>API URL: <code>ai-api.yorgis.net</code></p>
+    <p>API URL: <code>https://ai-api.yorgis.net</code></p>
 
     <h2>Try It:</h2>
     <form id="chat-form">
@@ -35,7 +35,7 @@
 
             // Make API call
             $.ajax({
-                url: 'https://ai-api.yorgis.net',
+                url: 'https://ai-api.yorgis.net', // Your API endpoint
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({ message: message }),
